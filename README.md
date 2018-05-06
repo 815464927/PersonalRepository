@@ -1,2 +1,4 @@
 # PersonalRepository
-to do some for study
+* to do some for study
+* connect to Android Studio
+
