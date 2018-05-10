@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -36,8 +37,46 @@ public class DrawView extends View {
         //drawCircle3(canvas);
         //drawCircle4(canvas);
 
-        drawRect(canvas);
+        //drawRect(canvas);
+        //drawRect2(canvas);
 
+        //drawPoint(canvas);
+        Paint paint = new Paint();
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(20);
+        float[] pts = {0,0,50,50,100,100,150,150,200,200,250,250};
+        canvas.drawPoints(pts,paint);
+
+    }
+
+    /**
+     * 画一个点
+     * @param canvas 画布
+     */
+    private void drawPoint(Canvas canvas) {
+
+        Paint paint = new Paint();
+        paint.setStrokeWidth(20);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        //paint.setStrokeCap(Paint.Cap.BUTT);
+        //paint.setStrokeCap(Paint.Cap.SQUARE);
+        canvas.drawPoint(100,100,paint);
+    }
+
+    /**
+     * 画矩形
+     * @param canvas 画布
+     */
+    private void drawRect2(Canvas canvas) {
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        //RectF rectF = new RectF(100,100,500,500);
+        //canvas.drawRect(rectF,paint);
+
+        Rect rect = new Rect(100,100,500,500);
+        paint.setColor(Color.RED);
+        canvas.drawRect(rect,paint);
     }
 
     /**
