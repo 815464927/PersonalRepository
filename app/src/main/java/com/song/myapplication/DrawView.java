@@ -41,12 +41,82 @@ public class DrawView extends View {
         //drawRect2(canvas);
 
         //drawPoint(canvas);
+        //drawPoints(canvas);
+
+        //drawOval(canvas);
+
+        //drawLine(canvas);
+        //drawLines(canvas);
+
+        //drawRoundRect(canvas);
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        //canvas.drawArc(10,10,100,100,100,100,true,paint);
+
+    }
+
+    /**
+     * 画圆角矩形
+     * @param canvas 画布
+     */
+    private void drawRoundRect(Canvas canvas) {
+        Paint paint = new Paint();
+        //minSdkVersion 21
+        //canvas.drawRoundRect(10,10,100,100,50,50,paint);
+    }
+
+    /**
+     * 画一组线
+     * @param canvas 画布
+     */
+    private void drawLines(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(10);
+        float[] pts = {50,50,300,50,50,200,300,200,180,50,180,200,300,50,300,200};
+        canvas.drawLines(pts,paint);
+        //canvas.drawLines(pts,4,4,paint);
+    }
+
+    /**
+     * 画直线
+     * @param canvas 画布
+     */
+    private void drawLine(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(10);
+        canvas.drawLine(10,10,300,300,paint);
+    }
+
+    /**
+     * 画椭圆
+     * @param canvas 画布
+     */
+    private void drawOval(Canvas canvas) {
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        //paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
+        //minSdkVersion 21
+        //canvas.drawOval(100,100,100,100,paint);
+    }
+
+    /**
+     * 绘制一组点
+     * @param canvas 画布
+     */
+    private void drawPoints(Canvas canvas) {
         Paint paint = new Paint();
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(20);
         float[] pts = {0,0,50,50,100,100,150,150,200,200,250,250};
-        canvas.drawPoints(pts,paint);
-
+        //canvas.drawPoints(pts,paint);
+        //offset = 2表示从数组的index = 2开始；
+        //count = 10 表示总共绘制数组里面10个点
+        canvas.drawPoints(pts,2,10,paint);
     }
 
     /**
