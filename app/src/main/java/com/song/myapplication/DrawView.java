@@ -52,7 +52,7 @@ public class DrawView extends View {
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-        //canvas.drawArc(10,10,100,100,100,100,true,paint);
+        canvas.drawArc(100,100,500,300,50,50,true,paint);
 
     }
 
