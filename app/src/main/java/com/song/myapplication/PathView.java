@@ -47,7 +47,74 @@ public class PathView extends View {
 
         //LineTo(canvas);
 
-        drawEVEN_ODD(canvas);
+        //drawEVEN_ODD(canvas);
+        drawWINDING(canvas);
+    }
+
+    /**
+     * 即 non-zero winding rule （非零环绕数原则）：首先，它需要你图形中的所有线条都是有绘制方向的：
+     * 然后，同样是从平面中的点向任意方向射出一条射线，但计算规则不一样：
+     * 以 0 为初始值，对于射线和图形的所有交点，遇到每个顺时针的交点（图形从射线的左边向右穿过）把结果加 1，
+     * 遇到每个逆时针的交点（图形从射线的右边向左穿过）把结果减 1，最终把所有的交点都算上，
+     * 得到的结果如果不是 0，则认为这个点在图形内部，是要被涂色的区域；如果是 0，则认为这个点在图形外部，
+     * 是不被涂色的区域。
+     * @param canvas 画布
+     */
+    private void drawWINDING(Canvas canvas) {
+        //===========================交叉圆============================
+        Paint paint = new Paint();
+        Path path = new Path();
+        path.addCircle(200,200,100, Path.Direction.CW);
+        path.addCircle(300,200,100, Path.Direction.CW);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path,paint);
+
+        Path path1 = new Path();
+        path1.setFillType(Path.FillType.WINDING);
+        path1.addCircle(600,200,100, Path.Direction.CW);
+        //path1.addCircle(700,200,100, Path.Direction.CW);
+        path1.addCircle(700,200,100, Path.Direction.CCW);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawPath(path1,paint);
+
+        //===========================内嵌圆============================
+        Path path2 = new Path();
+        path2.addCircle(200,600,100, Path.Direction.CW);
+        path2.addCircle(200,600,50, Path.Direction.CW);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path2,paint);
+
+        Path path3 = new Path();
+        path3.addCircle(600,600,100, Path.Direction.CW);
+        //path3.addCircle(600,600,50, Path.Direction.CW);
+        path3.addCircle(600,600,50, Path.Direction.CCW);
+        paint.setStyle(Paint.Style.FILL);
+        path3.setFillType(Path.FillType.WINDING);
+        canvas.drawPath(path3,paint);
+
+        //===========================重合五角星============================
+        Path path4 = new Path();
+        path4.moveTo(130,1000);
+        path4.lineTo(370,1000);//横线
+        path4.lineTo(170,1160);//撇线
+        path4.lineTo(250,900);//左上
+        path4.lineTo(330,1160);//右下
+        path4.close();
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path4,paint);
+        canvas.drawPath(path4,paint);
+
+        Path path5 = new Path();
+        path5.moveTo(530,1000);
+        path5.lineTo(770,1000);//横线
+        path5.lineTo(570,1160);//撇线
+        path5.lineTo(650,900);//左上
+        path5.lineTo(730,1160);//右下
+        path5.close();
+        paint.setStyle(Paint.Style.FILL);
+        path5.setFillType(Path.FillType.WINDING);
+        canvas.drawPath(path5,paint);
+        canvas.drawPath(path5,paint);
     }
 
     /**
