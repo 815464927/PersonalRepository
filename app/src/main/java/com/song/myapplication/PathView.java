@@ -45,7 +45,69 @@ public class PathView extends View {
 
         //addCircle(canvas);
 
-        LineTo(canvas);
+        //LineTo(canvas);
+
+        drawEVEN_ODD(canvas);
+    }
+
+    /**
+     * Path.setFillType(Path.FillType ft) 设置填充方式---EVEN_ODD
+     * 即 even-odd rule （奇偶原则）
+     * @param canvas 画布
+     */
+    private void drawEVEN_ODD(Canvas canvas) {
+        //===========================交叉圆============================
+        Paint paint = new Paint();
+        Path path = new Path();
+        path.addCircle(200,200,100, Path.Direction.CW);
+        path.addCircle(300,200,100, Path.Direction.CW);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path,paint);
+
+        Path path1 = new Path();
+        path1.setFillType(Path.FillType.EVEN_ODD);
+        path1.addCircle(600,200,100, Path.Direction.CW);
+        path1.addCircle(700,200,100, Path.Direction.CW);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawPath(path1,paint);
+
+        //===========================内嵌圆============================
+        Path path2 = new Path();
+        path2.addCircle(200,600,100, Path.Direction.CW);
+        path2.addCircle(200,600,50, Path.Direction.CW);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path2,paint);
+
+        Path path3 = new Path();
+        path3.addCircle(600,600,100, Path.Direction.CW);
+        path3.addCircle(600,600,50, Path.Direction.CW);
+        paint.setStyle(Paint.Style.FILL);
+        path3.setFillType(Path.FillType.EVEN_ODD);
+        canvas.drawPath(path3,paint);
+
+        //===========================重合五角星============================
+        Path path4 = new Path();
+        path4.moveTo(130,1000);
+        path4.lineTo(370,1000);//横线
+        path4.lineTo(170,1160);//撇线
+        path4.lineTo(250,900);//左上
+        path4.lineTo(330,1160);//右下
+        path4.close();
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawPath(path4,paint);
+        canvas.drawPath(path4,paint);
+
+        Path path5 = new Path();
+        path5.moveTo(530,1000);
+        path5.lineTo(770,1000);//横线
+        path5.lineTo(570,1160);//撇线
+        path5.lineTo(650,900);//左上
+        path5.lineTo(730,1160);//右下
+        path5.close();
+        paint.setStyle(Paint.Style.FILL);
+        path5.setFillType(Path.FillType.EVEN_ODD);
+        canvas.drawPath(path5,paint);
+        canvas.drawPath(path5,paint);
     }
 
     /**
