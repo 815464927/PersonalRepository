@@ -1,6 +1,8 @@
 package com.song.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -50,8 +52,37 @@ public class DrawView extends View {
 
         //drawRoundRect(canvas);
 
-        drawArc(canvas);
+        //drawArc(canvas);
 
+        //drawBitmap(canvas);
+
+        drawText(canvas);
+
+    }
+
+    /**
+     * 画文字
+     * @param canvas 画布
+     */
+    private void drawText(Canvas canvas) {
+        String txt = "hello world";
+        Paint paint = new Paint();
+        paint.setTextSize(60);
+        canvas.drawText(txt,100,100,paint);
+        paint.setTextSize(70);
+        canvas.drawText(txt,100,200,paint);
+        paint.setTextSize(80);
+        canvas.drawText(txt,100,300,paint);
+    }
+
+    /**
+     * 画Bitmap图
+     * @param canvas 画布
+     */
+    private void drawBitmap(Canvas canvas) {
+        Paint paint = new Paint();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        canvas.drawBitmap(bitmap,300,300,paint);
     }
 
     /**
