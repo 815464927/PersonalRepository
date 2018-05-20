@@ -50,10 +50,26 @@ public class DrawView extends View {
 
         //drawRoundRect(canvas);
 
+        drawArc(canvas);
+
+    }
+
+    /**
+     * 绘制弧形、扇形
+     * @param canvas 画布
+     */
+    private void drawArc(Canvas canvas) {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawArc(100,100,500,300,50,50,true,paint);
+        ////minSdkVersion 21；绘制扇形
+        canvas.drawArc(100,100,800,500,-110,100,true,paint);
+        //绘制弧形
+        canvas.drawArc(100,100,800,500,20,140,false,paint);
 
+        paint.setStyle(Paint.Style.STROKE);//画线模式
+        paint.setColor(Color.RED);//设置画笔颜色
+        //绘制不封口的弧形
+        canvas.drawArc(100,100,800,500,170,70,false,paint);
     }
 
     /**
